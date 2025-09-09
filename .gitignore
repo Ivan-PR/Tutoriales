@@ -1,0 +1,20 @@
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Configuración de VS Code
+.vscode/
+
+# Archivos de logs
+*.log
+
+# Archivos temporales de Windows
+*.tmp
+*.bak
+*.swp
+
+# Archivos de JetBrains (si algún día usas Rider, etc.)
+.idea/
+
+# Node.js global (si alguna carpeta usa Node sin gitignore propio)
+node_modules/

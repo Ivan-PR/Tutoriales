@@ -1,0 +1,7 @@
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\bin\Debug\OpenWebinarsConsoleApp.exe.config
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\bin\Debug\OpenWebinarsConsoleApp.exe
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\bin\Debug\OpenWebinarsConsoleApp.pdb
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\obj\Debug\OpenWebinarsConsoleApp.csproj.AssemblyReference.cache
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\obj\Debug\OpenWebinarsConsoleApp.csproj.CoreCompileInputs.cache
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\obj\Debug\OpenWebinarsConsoleApp.exe
+C:\Ivan\Proyectos\Tutoriales\DotNet\Tutorial_01\OpenWebinarsConsoleApp\obj\Debug\OpenWebinarsConsoleApp.pdb

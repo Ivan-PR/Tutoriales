@@ -12,7 +12,7 @@ namespace OpenWebinarsConsoleApp
 
         public string Title { get; set; }
 
-        public virtual void Play() 
+        public virtual void Play()
         {
             Console.WriteLine($"Playing {Title}");
         }

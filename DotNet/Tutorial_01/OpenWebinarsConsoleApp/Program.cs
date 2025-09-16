@@ -20,9 +20,23 @@ namespace OpenWebinarsConsoleApp
             song2.Seconds = 500;
             song2.Position = new ShelvePosition(1, 0);
 
+            PlayList<Song> playListSongs = new PlayList<Song>();
+
+            playListSongs.Add(song);
+            playListSongs.Add(song2);
+
+            WriteLineSpecial<Song>(song, "Start with", "enjoy")
+
             Console.WriteLine(song2.ToString());
 
+            Tuple<int, string, Song> Tuple = new Tuple<int, string, Song>(0, "Hola", song);
+
             Console.ReadKey();
+        }
+
+        static void WriteLineSpecial<T>(T data, string prefix, string suffix)
+        {
+            Console.WriteLine($"{prefix} {data} {suffix}");
         }
 
         static void Declarations()
@@ -33,7 +47,8 @@ namespace OpenWebinarsConsoleApp
             string helloWorld = string.Empty;
         }
 
-        static void Conditions() {
+        static void Conditions()
+        {
             int number = 0;
             number += 2;
             //number => 2
@@ -58,7 +73,8 @@ namespace OpenWebinarsConsoleApp
             }
         }
 
-        static void Loops() {
+        static void Loops()
+        {
             //== (igual)
             //!= (no igual)
             //>= (mayor o igual)
@@ -83,11 +99,11 @@ namespace OpenWebinarsConsoleApp
             int[] numbers = new int[5] { 1, 2, 3, 4, 5 };
             foreach (int num in numbers)
             {
-
             }
         }
 
-        static void Switch() {
+        static void Switch()
+        {
             int number = 0;
 
             switch (number)
@@ -95,9 +111,11 @@ namespace OpenWebinarsConsoleApp
                 case 0:
                     //Hacer algo
                     break;
+
                 case 10:
                     //Hacer otra cosa
                     break;
+
                 default:
                     //Hacer otra cosa
                     break;

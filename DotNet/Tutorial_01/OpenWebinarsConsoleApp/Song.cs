@@ -27,6 +27,5 @@ namespace OpenWebinarsConsoleApp
         {
             return $"Title: {Title} Duration: ¨{Seconds}";
         }
-
     }
 }

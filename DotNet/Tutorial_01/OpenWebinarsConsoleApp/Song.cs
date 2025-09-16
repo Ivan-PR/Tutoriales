@@ -17,5 +17,16 @@ namespace OpenWebinarsConsoleApp
             Console.WriteLine("Increase volume");
             base.Play();
         }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return $"Title: {Title} Duration: ¨{Seconds}";
+        }
+
     }
 }

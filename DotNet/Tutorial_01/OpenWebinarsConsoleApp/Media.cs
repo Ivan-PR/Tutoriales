@@ -28,5 +28,19 @@ namespace OpenWebinarsConsoleApp
                 return false;
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            var mediaObj = (Media)obj;
+
+            if (mediaObj.Title == this.Title)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

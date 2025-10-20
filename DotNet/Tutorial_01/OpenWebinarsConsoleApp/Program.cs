@@ -31,8 +31,40 @@ namespace OpenWebinarsConsoleApp
 
             Tuple<int, string, Song> Tuple = new Tuple<int, string, Song>(0, "Hola", song);
 
+            ListExplanation();
+            StackExplanation();
+            QueueExplanation();
+
+
             Console.ReadKey();
         }
+
+        private static void ListExplanation()
+        { 
+            List<int> numbers = new List<int>();
+
+            numbers.Add(0);
+            // numbers.Count
+        }
+
+        private static void StackExplanation()
+        { 
+            Stack<Song> salesSongs = new Stack<Song>();
+
+            salesSongs.Push(new Song());
+            salesSongs.Push(new Song());
+
+            Song song = salesSongs.Pop();
+        }
+
+        private static void QueueExplanation()
+        {
+            Queue<int> queueNumbers = new Queue<int>();
+            
+            queueNumbers.Enqueue(1);
+            int number = queueNumbers.Dequeue();
+        }
+        
 
         static void WriteLineSpecial<T>(T data, string prefix, string suffix)
         {

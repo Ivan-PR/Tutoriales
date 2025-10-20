@@ -3,6 +3,7 @@
 Thumbs.db
 
 # Configuración de VS Code
+.vs/
 .vscode/
 
 # Archivos de logs

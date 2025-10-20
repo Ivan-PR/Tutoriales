@@ -25,7 +25,7 @@ namespace OpenWebinarsConsoleApp
             playListSongs.Add(song);
             playListSongs.Add(song2);
 
-            WriteLineSpecial<Song>(song, "Start with", "enjoy")
+            WriteLineSpecial<Song>(song, "Start with", "enjoy");
 
             Console.WriteLine(song2.ToString());
 
@@ -34,6 +34,7 @@ namespace OpenWebinarsConsoleApp
             ListExplanation();
             StackExplanation();
             QueueExplanation();
+            DictionaryExplanation();
 
 
             Console.ReadKey();
@@ -44,6 +45,7 @@ namespace OpenWebinarsConsoleApp
             List<int> numbers = new List<int>();
 
             numbers.Add(0);
+            numbers.Add(1);
             // numbers.Count
         }
 
@@ -64,7 +66,28 @@ namespace OpenWebinarsConsoleApp
             queueNumbers.Enqueue(1);
             int number = queueNumbers.Dequeue();
         }
-        
+
+        private static void DictionaryExplanation()
+        {
+            Dictionary<string, Client> clients = new Dictionary<string, Client>();
+
+            clients.Add("00000000D", new Client() { Name = "Jose Manuel" });
+
+
+            if (!clients.ContainsKey("00000000D")) 
+            {
+                clients.Add("00000000D", new Client() { Name = "Jose Manuel" });
+            }
+
+            clients["00000000D"] = new Client();
+
+            Client myClient = clients["00000000D"];
+
+            foreach (KeyValuePair<string, Client> keyValue in clients)
+            {
+                
+            }
+        }
 
         static void WriteLineSpecial<T>(T data, string prefix, string suffix)
         {

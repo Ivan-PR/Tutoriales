@@ -3,21 +3,18 @@ using System.Collections.Generic;
 
 namespace OpenWebinarsConsoleApp
 {
-
     public class PlayList<T>
     {
-        List<T> mediaList = new List<T>(); 
+        List<T> mediaList = new List<T>();
 
-        
-        
         public void Add(T media)
         {
-            list.Add(media);
+            mediaList.Add(media);
         }
 
         public void PlayAll()
         {
-            foreach (T media in list)
+            foreach (T media in mediaList)
             {
                 Console.WriteLine(media);
             }
@@ -25,11 +22,10 @@ namespace OpenWebinarsConsoleApp
 
         public void Preview()
         {
-            if (mediaList.count > 0)
+            if (mediaList.Count>0)
             {
                 Console.WriteLine(mediaList[0]);
             }
         }
-
     }
 }

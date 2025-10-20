@@ -3,7 +3,6 @@
 Thumbs.db
 
 # Configuración de VS Code
-.vs/
 .vscode/
 
 # Archivos de logs
@@ -19,3 +18,9 @@ Thumbs.db
 
 # Node.js global (si alguna carpeta usa Node sin gitignore propio)
 node_modules/
+
+.vs/
+*.suo
+*.sqlite
+*.db
+*.vsidx

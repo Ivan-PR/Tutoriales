@@ -83,10 +83,12 @@ namespace OpenWebinarsConsoleApp
 
             Client myClient = clients["00000000D"];
 
-            foreach (KeyValuePair<string, Client> keyValue in clients)
-            {
-                
-            }
+            var elements = new List<KeyValuePair<string, Client>>();
+            elements.Add(new KeyValuePair<string, Client>("0001", new Client()));
+            elements.Add(new KeyValuePair<string, Client>("0002", new Client()));
+
+            // Utils.AddRangeDictionary(clients, elements);
+            clients.AddRange(elements);
         }
 
         static void WriteLineSpecial<T>(T data, string prefix, string suffix)

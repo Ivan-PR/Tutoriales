@@ -14,6 +14,8 @@ namespace OpenWebinarsConsoleApp
 
         public string Category { get; set; }
 
+        public List<Artist> Artists { get; set; }
+
         public override void Play()
         {
             Console.WriteLine("Increase volume");

@@ -7,4 +7,8 @@
 		<AssemblyName>OpenWebinarsConsoleApp</AssemblyName>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	</ItemGroup>
+
 </Project>

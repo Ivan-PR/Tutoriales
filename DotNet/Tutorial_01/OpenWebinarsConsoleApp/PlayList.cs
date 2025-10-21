@@ -45,14 +45,21 @@ namespace OpenWebinarsConsoleApp
 
         public List<string> GimmeTitlesFromSongs()
         {
-            List<string> titles = new List<string>();
+            var titles = mediaList.Select(x => x.Title);
 
-            foreach (Song song in mediaList)
-            {
-                titles.Add(song.Title);
-            }
+            return titles.ToList();
+        }
 
-            return titles;
+        public List<string> GimmeNamesOfArtist()
+        {
+            var namesOfArtists = mediaList.SelectMany(x => x.Artists).Select(x => x.Name);
+
+            return namesOfArtists.ToList();
+        }
+
+        public bool HaveATitle(string title)
+        {
+            return mediaList.Any(x => x.Title==title);
         }
     }
 }

@@ -2,8 +2,9 @@
 .DS_Store
 Thumbs.db
 
-# Configuración de VS Code
+# Configuración de editores
 .vscode/
+.idea/
 
 # Archivos de logs
 *.log
@@ -13,14 +14,19 @@ Thumbs.db
 *.bak
 *.swp
 
-# Archivos de JetBrains (si algún día usas Rider, etc.)
-.idea/
-
-# Node.js global (si alguna carpeta usa Node sin gitignore propio)
+# Node.js (si alguna carpeta usa Node sin gitignore propio)
 node_modules/
 
+# Visual Studio
 .vs/
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
 *.sqlite
 *.db
 *.vsidx
+
+# Carpetas de build
+bin/
+obj/

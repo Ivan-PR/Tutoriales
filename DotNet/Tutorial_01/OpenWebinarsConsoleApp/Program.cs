@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace OpenWebinarsConsoleApp
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Song song = new Song();
-            song.Title = "Dark side of moon";
-            song.Seconds = 500;
-            song.Position = new ShelvePosition(0, 0);
+            song.Title="Dark side of moon";
+            song.Seconds=500;
+            song.Position=new ShelvePosition(0, 0);
 
             Song song2 = new Song();
-            song2.Title = "Dark side of moon";
-            song2.Seconds = 500;
-            song2.Position = new ShelvePosition(1, 0);
+            song2.Title="Dark side of moon";
+            song2.Seconds=500;
+            song2.Position=new ShelvePosition(1, 0);
 
-            PlayList<Song> playListSongs = new PlayList<Song>();
+            PlayList playListSongs = new PlayList();
 
             playListSongs.Add(song);
             playListSongs.Add(song2);
@@ -36,12 +36,11 @@ namespace OpenWebinarsConsoleApp
             QueueExplanation();
             DictionaryExplanation();
 
-
             Console.ReadKey();
         }
 
         private static void ListExplanation()
-        { 
+        {
             List<int> numbers = new List<int>();
 
             numbers.Add(0);
@@ -50,7 +49,7 @@ namespace OpenWebinarsConsoleApp
         }
 
         private static void StackExplanation()
-        { 
+        {
             Stack<Song> salesSongs = new Stack<Song>();
 
             salesSongs.Push(new Song());
@@ -62,7 +61,7 @@ namespace OpenWebinarsConsoleApp
         private static void QueueExplanation()
         {
             Queue<int> queueNumbers = new Queue<int>();
-            
+
             queueNumbers.Enqueue(1);
             int number = queueNumbers.Dequeue();
         }
@@ -71,15 +70,14 @@ namespace OpenWebinarsConsoleApp
         {
             Dictionary<string, Client> clients = new Dictionary<string, Client>();
 
-            clients.Add("00000000D", new Client() { Name = "Jose Manuel" });
+            clients.Add("00000000D", new Client() { Name="Jose Manuel" });
 
-
-            if (!clients.ContainsKey("00000000D")) 
+            if (!clients.ContainsKey("00000000D"))
             {
-                clients.Add("00000000D", new Client() { Name = "Jose Manuel" });
+                clients.Add("00000000D", new Client() { Name="Jose Manuel" });
             }
 
-            clients["00000000D"] = new Client();
+            clients["00000000D"]=new Client();
 
             Client myClient = clients["00000000D"];
 
@@ -91,12 +89,12 @@ namespace OpenWebinarsConsoleApp
             clients.AddRange(elements);
         }
 
-        static void WriteLineSpecial<T>(T data, string prefix, string suffix)
+        private static void WriteLineSpecial<T>(T data, string prefix, string suffix)
         {
             Console.WriteLine($"{prefix} {data} {suffix}");
         }
 
-        static void Declarations()
+        private static void Declarations()
         {
             int number = 0;
             double numberDecimals = 0.0d;
@@ -104,22 +102,22 @@ namespace OpenWebinarsConsoleApp
             string helloWorld = string.Empty;
         }
 
-        static void Conditions()
+        private static void Conditions()
         {
             int number = 0;
-            number += 2;
+            number+=2;
             //number => 2
 
-            number -= 2;
+            number-=2;
             //number => 0
 
             //Si
-            if (number == 0)
+            if (number==0)
             {
                 //Hacer algo
             }
             //Sino Si
-            else if (number > 0)
+            else if (number>0)
             {
                 //Hacer otra cosa
             }
@@ -130,7 +128,7 @@ namespace OpenWebinarsConsoleApp
             }
         }
 
-        static void Loops()
+        private static void Loops()
         {
             //== (igual)
             //!= (no igual)
@@ -143,12 +141,12 @@ namespace OpenWebinarsConsoleApp
 
             int number = 0;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i<10; i++)
             {
                 // Hacer algo 10 veces
             }
 
-            while (number != 10)
+            while (number!=10)
             {
                 number++;
             }
@@ -159,7 +157,7 @@ namespace OpenWebinarsConsoleApp
             }
         }
 
-        static void Switch()
+        private static void Switch()
         {
             int number = 0;
 

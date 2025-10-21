@@ -1,20 +1,21 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace OpenWebinarsConsoleApp
 {
-    public class PlayList<T>
+    public class PlayList
     {
-        List<T> mediaList = new List<T>();
+        private List<Song> mediaList = new List<Song>();
 
-        public void Add(T media)
+        public void Add(Song media)
         {
             mediaList.Add(media);
         }
 
         public void PlayAll()
         {
-            foreach (T media in mediaList)
+            foreach (Song media in mediaList)
             {
                 Console.WriteLine(media);
             }
@@ -26,6 +27,32 @@ namespace OpenWebinarsConsoleApp
             {
                 Console.WriteLine(mediaList[0]);
             }
+        }
+
+        public List<Song> SearchForCategory(string category)
+        {
+            var songs = mediaList.Where(x => x.Category==category);
+
+            return songs.ToList();
+        }
+
+        public List<Song> SearchForTitle(string title)
+        {
+            var songs = mediaList.Where(x => x.Title.Contains(title));
+
+            return songs.ToList();
+        }
+
+        public List<string> GimmeTitlesFromSongs()
+        {
+            List<string> titles = new List<string>();
+
+            foreach (Song song in mediaList)
+            {
+                titles.Add(song.Title);
+            }
+
+            return titles;
         }
     }
 }

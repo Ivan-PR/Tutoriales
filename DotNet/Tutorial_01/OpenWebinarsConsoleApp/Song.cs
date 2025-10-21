@@ -12,6 +12,8 @@ namespace OpenWebinarsConsoleApp
 
         public ShelvePosition Position { get; set; }
 
+        public string Category { get; set; }
+
         public override void Play()
         {
             Console.WriteLine("Increase volume");

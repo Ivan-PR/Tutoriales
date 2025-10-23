@@ -9,7 +9,11 @@ namespace ReflectionSample
     [My(Count = 10)]
     public class MySampleFromReflection
     {
+        public string Surname;
         public string Name { get; set; }
         public int Number { get; set; }
+
+        public void DoSomething()
+        { }
     }
 }

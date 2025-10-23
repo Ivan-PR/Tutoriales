@@ -61,5 +61,27 @@ namespace OpenWebinarsConsoleApp
         {
             return mediaList.Any(x => x.Title==title);
         }
+
+        public Song GetFirstSongWithLess1Minute()
+        {
+            var song = mediaList.FirstOrDefault(x => x.Seconds<60);
+            return song;
+        }
+
+        public Song GetLastSongWithLess1Minute()
+        {
+            var song = mediaList.LastOrDefault(x => x.Seconds<60);
+            return song;
+        }
+
+        public List<Song> Top10()
+        {
+            return mediaList.Take(10).ToList();
+        }
+
+        public List<Song> Skip10Top20()
+        {
+            return mediaList.Skip(10).Take(10).ToList();
+        }
     }
 }

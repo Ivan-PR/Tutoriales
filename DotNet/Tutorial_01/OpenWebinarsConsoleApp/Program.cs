@@ -27,6 +27,8 @@ namespace OpenWebinarsConsoleApp
 
             WriteLineSpecial<Song>(song, "Start with", "enjoy");
 
+            DownloadSong();
+
             Console.WriteLine(song2.ToString());
 
             Tuple<int, string, Song> Tuple = new Tuple<int, string, Song>(0, "Hola", song);
@@ -37,6 +39,18 @@ namespace OpenWebinarsConsoleApp
             DictionaryExplanation();
 
             Console.ReadKey();
+        }
+
+        private static void DownloadSong()
+        {
+            DownloadService downloadService = new DownloadService();
+            byte[] song = downloadService.Download("Dark side of moon");
+        }
+
+        private static async void DownloadSongAsync()
+        {
+            DownloadService downloadService = new DownloadService();
+            byte[] futureSong = await downloadService.DownloadAsync("Dark side of moon");
         }
 
         private static void ListExplanation()
@@ -51,10 +65,8 @@ namespace OpenWebinarsConsoleApp
         private static void StackExplanation()
         {
             Stack<Song> salesSongs = new Stack<Song>();
-
             salesSongs.Push(new Song());
             salesSongs.Push(new Song());
-
             Song song = salesSongs.Pop();
         }
 

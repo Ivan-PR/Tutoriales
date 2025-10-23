@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 namespace OpenWebinarsConsoleApp
 {
-    public class PlayList
+    public class PlayList<T> where T : Song
     {
-        private List<Song> mediaList = new List<Song>();
+        private List<T> mediaList = new List<T>();
 
-        public void Add(Song media)
+        public void Add(T media)
         {
             mediaList.Add(media);
         }
 
         public void PlayAll()
         {
-            foreach (Song media in mediaList)
+            foreach (T media in mediaList)
             {
                 Console.WriteLine(media);
             }
@@ -29,14 +29,14 @@ namespace OpenWebinarsConsoleApp
             }
         }
 
-        public List<Song> SearchForCategory(string category)
+        public List<T> SearchForCategory(string category)
         {
             var songs = mediaList.Where(x => x.Category==category);
 
             return songs.ToList();
         }
 
-        public List<Song> SearchForTitle(string title)
+        public List<T> SearchForTitle(string title)
         {
             var songs = mediaList.Where(x => x.Title.Contains(title));
 
@@ -62,24 +62,24 @@ namespace OpenWebinarsConsoleApp
             return mediaList.Any(x => x.Title==title);
         }
 
-        public Song GetFirstSongWithLess1Minute()
+        public T GetFirstSongWithLess1Minute()
         {
             var song = mediaList.FirstOrDefault(x => x.Seconds<60);
             return song;
         }
 
-        public Song GetLastSongWithLess1Minute()
+        public T GetLastSongWithLess1Minute()
         {
             var song = mediaList.LastOrDefault(x => x.Seconds<60);
             return song;
         }
 
-        public List<Song> Top10()
+        public List<T> Top10()
         {
             return mediaList.OrderByDescending(x => x.Visits).Take(10).ToList();
         }
 
-        public Song[] Bottom10()
+        public T[] Bottom10()
         {
             return mediaList.OrderBy(x => x.Visits).Take(10).ToArray();
         }
@@ -89,7 +89,7 @@ namespace OpenWebinarsConsoleApp
             mediaList.GroupBy(x => x.Category).ToDictionary(x => x.Key);
         }
 
-        public List<Song> Skip10Top20()
+        public List<T> Skip10Top20()
         {
             return mediaList.Skip(10).Take(10).ToList();
         }

@@ -20,7 +20,7 @@ namespace OpenWebinarsConsoleApp
             song2.Seconds=500;
             song2.Position=new ShelvePosition(1, 0);
 
-            PlayList playListSongs = new PlayList();
+            PlayList<Song> playListSongs = new PlayList<Song>();
 
             playListSongs.Add(song);
             playListSongs.Add(song2);
@@ -89,8 +89,9 @@ namespace OpenWebinarsConsoleApp
             clients.AddRange(elements);
         }
 
-        private static void WriteLineSpecial<T>(T data, string prefix, string suffix)
+        private static void WriteLineSpecial<T>(T data, string prefix, string suffix) where T : new()
         {
+            T myNewType = new T();
             Console.WriteLine($"{prefix} {data} {suffix}");
         }
 
@@ -100,6 +101,8 @@ namespace OpenWebinarsConsoleApp
             double numberDecimals = 0.0d;
             bool yayOrNay = true;
             string helloWorld = string.Empty;
+
+            Console.WriteLine(number.ToString(), numberDecimals, yayOrNay, helloWorld);
         }
 
         private static void Conditions()

@@ -8,7 +8,7 @@ namespace OpenWebinarsConsoleApp
 {
     public class Media
     {
-        private int parentRate;
+        private int parentRate = 18;
 
         public string Title { get; set; }
 
@@ -19,7 +19,7 @@ namespace OpenWebinarsConsoleApp
 
         protected bool ThisContentIsCorrectForThisAge(int age)
         {
-            if (age >= parentRate)
+            if (age>=parentRate)
             {
                 return true;
             }
@@ -31,16 +31,16 @@ namespace OpenWebinarsConsoleApp
 
         public override bool Equals(object obj)
         {
-            var mediaObj = (Media)obj;
-
-            if (mediaObj.Title == this.Title)
-            {
-                return true;
-            }
-            else
-            {
+            if (obj==null||obj.GetType()!=typeof(Media))
                 return false;
-            }
+
+            var mediaObj = (Media)obj;
+            return mediaObj.Title==this.Title;
+        }
+
+        public override int GetHashCode()
+        {
+            return Title!=null ? Title.GetHashCode() : 0;
         }
     }
 }

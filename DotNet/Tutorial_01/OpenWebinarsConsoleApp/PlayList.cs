@@ -76,12 +76,27 @@ namespace OpenWebinarsConsoleApp
 
         public List<Song> Top10()
         {
-            return mediaList.Take(10).ToList();
+            return mediaList.OrderByDescending(x => x.Visits).Take(10).ToList();
+        }
+
+        public Song[] Bottom10()
+        {
+            return mediaList.OrderBy(x => x.Visits).Take(10).ToArray();
+        }
+
+        public void GroupFromCategory()
+        {
+            mediaList.GroupBy(x => x.Category).ToDictionary(x => x.Key);
         }
 
         public List<Song> Skip10Top20()
         {
             return mediaList.Skip(10).Take(10).ToList();
+        }
+
+        public List<Media> ToConvertMedia()
+        {
+            return mediaList.OfType<Media>().ToList();
         }
     }
 }

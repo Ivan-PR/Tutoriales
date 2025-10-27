@@ -16,5 +16,34 @@ namespace OpenWebinarsForms
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Hello World");
+            label1.Text=textBox1.Text;
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.BackColor=Color.Aquamarine;
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData==Keys.D0)
+            {
+                label1.Text="Valor incorrecto";
+                e.SuppressKeyPress=true;
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            pictureBox1.Image=Image.FromFile("c:\\blablab\\image.jpg");
+        }
     }
 }

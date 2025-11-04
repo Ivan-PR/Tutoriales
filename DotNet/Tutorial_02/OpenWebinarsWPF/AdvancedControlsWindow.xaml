@@ -18,5 +18,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
+        <local:UserControlPathButton LabelText="Introduzca ubicacion de fichero" />
     </Grid>
 </Window>

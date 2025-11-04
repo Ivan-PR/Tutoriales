@@ -24,5 +24,9 @@ namespace OpenWebinarsWPF
         {
             InitializeComponent();
         }
+
+        private void ButtonHelloWorld_Click(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

@@ -7,6 +7,27 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="Red">
+            <Button x:Name="ButtonHelloWorld" Content="Hello World"
+                    Click="ButtonHelloWorld_Click" />
+            <Label Content="Hello OpenWebinars" HorizontalAlignment="Right" />
+        </StackPanel>
+
+        <TextBox Text="Hello" Grid.Row="5" Grid.Column="1" />
+        <Image Grid.Row="0" Grid.Column="0" />
     </Grid>
 </Window>

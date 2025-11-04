@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using OpenWebinarsMVVM.Services;
 using OpenWebinarsMVVM.ViewModel.Base;
 
 namespace OpenWebinarsMVVM.ViewModel
@@ -11,6 +13,12 @@ namespace OpenWebinarsMVVM.ViewModel
     {
         private string userName;
         private string passWord;
+        private ICommand loginCommand;
+
+        public LoginViewModel()
+        {
+            loginCommand = new Command(PerformDoLoginCommand);
+        }
 
         public string UserName
         {
@@ -30,6 +38,13 @@ namespace OpenWebinarsMVVM.ViewModel
                 passWord = value;
                 RaiseProperty();
             }
+        }
+
+        public ICommand DoLoginCommand => loginCommand;
+
+        private void PerformDoLoginCommand()
+        {
+            new LoginService().DoLogin(userName, passWord);
         }
     }
 }

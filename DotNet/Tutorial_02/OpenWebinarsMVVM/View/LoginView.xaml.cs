@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using OpenWebinarsMVVM.ViewModel;
 
 namespace OpenWebinarsMVVM.View
 {
@@ -22,6 +23,7 @@ namespace OpenWebinarsMVVM.View
         public LoginView()
         {
             InitializeComponent();
+            DataContext = new LoginViewModel();
         }
     }
 }

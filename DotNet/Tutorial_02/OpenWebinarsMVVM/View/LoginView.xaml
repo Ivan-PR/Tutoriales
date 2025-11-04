@@ -8,11 +8,11 @@
         Title="LoginView" Height="450" Width="800">
     <StackPanel>
         <Label Content="Username" />
-        <TextBlock />
+        <TextBlock Text="{Binding UserName}" />
 
         <Label Content="Password" />
-        <TextBlock />
+        <TextBlock  Text="{Binding PassWord}" />
 
-        <Button Content="Login" />
+        <Button Content="Login" Command="{Binding DoLoginCommand}" />
     </StackPanel>
 </Window>

@@ -45,5 +45,10 @@ namespace OpenWebinarsForms
         {
             pictureBox1.Image=Image.FromFile("c:\\blablab\\image.jpg");
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new FormAdvancedControls().Show();
+        }
     }
 }

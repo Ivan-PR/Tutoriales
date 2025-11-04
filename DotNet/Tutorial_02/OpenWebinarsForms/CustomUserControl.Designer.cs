@@ -36,7 +36,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(246, 54);
+            this.button1.Location = new System.Drawing.Point(221, 27);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 20);
             this.button1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(45, 38);
+            this.label1.Location = new System.Drawing.Point(20, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
@@ -55,7 +55,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(48, 54);
+            this.textBox1.Location = new System.Drawing.Point(23, 27);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(192, 20);
             this.textBox1.TabIndex = 2;
@@ -72,7 +72,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Name = "CustomUserControl";
-            this.Size = new System.Drawing.Size(372, 129);
+            this.Size = new System.Drawing.Size(319, 60);
             this.ResumeLayout(false);
             this.PerformLayout();
 

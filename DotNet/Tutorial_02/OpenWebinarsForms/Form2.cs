@@ -15,6 +15,16 @@ namespace OpenWebinarsForms
         public Form2()
         {
             InitializeComponent();
+            buttonExtended1.Click+=ButtonExtend1Click;
+        }
+
+        private void ButtonExtend1Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            buttonExtended1.Click-=ButtonExtend1Click;
         }
     }
 }

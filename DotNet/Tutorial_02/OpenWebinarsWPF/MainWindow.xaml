@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:OpenWebinarsWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -23,7 +24,8 @@
 
         <StackPanel Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Background="Red">
             <Button x:Name="ButtonHelloWorld" Content="Hello World"
-                    Click="ButtonHelloWorld_Click" />
+                    Click="ButtonHelloWorld_Click" Style="{StaticResource ButtonMain}"
+                    Background="Green" />
             <Label Content="Hello OpenWebinars" HorizontalAlignment="Right" />
         </StackPanel>
 

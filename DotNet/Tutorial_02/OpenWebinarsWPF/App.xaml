@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:OpenWebinarsWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Color x:Key="ColorPrimary">#000000</Color>
+
+        <Style TargetType="Button" x:Key="ButtonMain">
+            <Setter Property="Background" Value="Aquamarine" />
+            <Setter Property="FontSize" Value="15" />
+        </Style>
     </Application.Resources>
 </Application>

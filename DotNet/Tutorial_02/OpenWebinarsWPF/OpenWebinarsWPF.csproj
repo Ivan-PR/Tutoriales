@@ -55,10 +55,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnimationSampleWindow.xaml.cs">
+      <DependentUpon>AnimationSampleWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControlPathButton.xaml.cs">
       <DependentUpon>UserControlPathButton.xaml</DependentUpon>
     </Compile>
     <Page Include="AdvancedControlsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AnimationSampleWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

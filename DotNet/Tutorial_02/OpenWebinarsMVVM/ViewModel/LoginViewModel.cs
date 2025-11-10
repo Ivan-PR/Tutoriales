@@ -11,6 +11,8 @@ namespace OpenWebinarsMVVM.ViewModel
 {
     public class LoginViewModel : BaseViewModel
     {
+        private readonly ILoginService loginService;
+
         private string userName;
         private string passWord;
         private ICommand loginCommand;
@@ -18,6 +20,7 @@ namespace OpenWebinarsMVVM.ViewModel
         public LoginViewModel()
         {
             loginCommand = new Command(PerformDoLoginCommand);
+            loginService = CustomDependecyService.Get<LoginService>();
         }
 
         public string UserName
@@ -44,7 +47,7 @@ namespace OpenWebinarsMVVM.ViewModel
 
         private void PerformDoLoginCommand()
         {
-            new LoginService().DoLogin(userName, passWord);
+            CustomDependecyService.Get<LoginService>().DoLogin(userName, passWord);
         }
     }
 }

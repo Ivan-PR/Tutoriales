@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using OpenWebinarsMVVM.Services;
 
 namespace OpenWebinarsMVVM
 {
@@ -13,5 +14,9 @@ namespace OpenWebinarsMVVM
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            CustomDependecyService.Register<LoginService>();
+        }
     }
 }

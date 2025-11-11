@@ -26,5 +26,20 @@ namespace OpenWebinarsData
             FileInfo fileInfo = new FileInfo("C:\\MyDirectory\\MyFile.txt");
             DirectoryInfo dirInfo = new DirectoryInfo("C:\\MyDirectory");
         }
+
+        public static void WorkingWithFile()
+        {
+            // Stream
+
+            // MemoryStream StreamWriter StreamReader FileStream
+
+            // StreamWriter writer = new StreamWriter("C:\\MyDirectory\\MyFile.txt"); StreamReader
+            // reader = new StreamReader("C:\\MyDirectory\\MyFile.txt"); FileStream fileStream = new
+            // FileStream("C:\\MyDirectory\\MyFile.txt", FileMode.OpenOrCreate);
+
+            FileStream fileStr = new FileStream("C:\\MyDirectory\\MyFile.txt", FileMode.OpenOrCreate);
+            fileStr.Seek(0, SeekOrigin.Begin);
+            fileStr.Close();
+        }
     }
 }

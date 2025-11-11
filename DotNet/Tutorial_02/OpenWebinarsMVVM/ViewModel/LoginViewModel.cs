@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using OpenWebinarsMVVM.Services;
 using OpenWebinarsMVVM.ViewModel.Base;
+using ReactiveUI;
+using ReactiveUI.Wpf;
 
 namespace OpenWebinarsMVVM.ViewModel
 {
@@ -15,39 +18,32 @@ namespace OpenWebinarsMVVM.ViewModel
 
         private string userName;
         private string passWord;
-        private ICommand loginCommand;
+        private ReactiveCommand<Unit, Unit> loginCommand;
 
         public LoginViewModel()
         {
-            loginCommand = new Command(PerformDoLoginCommand);
+            loginCommand = ReactiveCommand.CreateFromTask<Unit, Unit>(PerformDoLoginAsync);
             loginService = CustomDependecyService.Get<LoginService>();
+        }
+
+        private Task<Unit> PerformDoLoginAsync(Unit arg)
+        {
+            CustomDependecyService.Get<LoginService>().DoLogin(userName, passWord);
+            return Task.FromResult(Unit.Default);
         }
 
         public string UserName
         {
             get => userName;
-            set
-            {
-                userName = value;
-                RaiseProperty();
-            }
+            set => this.RaiseAndSetIfChanged(ref userName, value);
         }
 
         public string PassWord
         {
             get => passWord;
-            set
-            {
-                passWord = value;
-                RaiseProperty();
-            }
+            set => this.RaiseAndSetIfChanged(ref passWord, value);
         }
 
-        public ICommand DoLoginCommand => loginCommand;
-
-        private void PerformDoLoginCommand()
-        {
-            CustomDependecyService.Get<LoginService>().DoLogin(userName, passWord);
-        }
+        public ReactiveCommand<Unit, Unit> DoLoginCommand => loginCommand;
     }
 }

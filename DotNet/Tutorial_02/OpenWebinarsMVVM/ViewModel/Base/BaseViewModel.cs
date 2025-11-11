@@ -5,21 +5,12 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
+using ReactiveUI.Wpf;
 
 namespace OpenWebinarsMVVM.ViewModel.Base
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : ReactiveObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public void RaiseProperty([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-
-            // PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

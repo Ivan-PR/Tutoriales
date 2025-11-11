@@ -20,6 +20,7 @@ namespace OpenWebinarsData
                 connection.Open();
                 OdbcCommand command = connection.CreateCommand();
                 command.CommandText = "SELECT Param1, Param2, Param3 FROM Table1 WHERE Param1 = @Param1Where";
+                command.Parameters.Add(new OdbcParameter("@Param1", 10));
                 OdbcDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
@@ -49,6 +50,54 @@ namespace OpenWebinarsData
             }
 
             return table1;
+        }
+
+        public int Execute()
+        {
+            int rowsAffected = 0;
+            OdbcConnection connection = new OdbcConnection(string.Empty);
+            OdbcTransaction transaction = null;
+
+            try
+            {
+                connection.Open();
+                OdbcCommand command = connection.CreateCommand();
+                command.CommandText = "INSERT INTO Table1(Param1, Param2, Param3) VALUES (@Param1, @Param2, @Param3)";
+
+                command.Parameters.Add(new OdbcParameter("@Param1", 11));
+                command.Parameters.Add(new OdbcParameter("@Param2", "Jose"));
+                command.Parameters.Add(new OdbcParameter("@Param3", 150.43));
+
+                transaction = connection.BeginTransaction();
+                rowsAffected = command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e);
+                if (transaction != null)
+                {
+                    transaction.Rollback();
+                }
+            }
+            finally
+            {
+                if (connection.State != ConnectionState.Closed)
+                {
+                    connection.Close();
+                }
+                if (connection != null)
+                {
+                    connection.Dispose();
+                }
+                if (transaction != null)
+                {
+                    transaction.Commit();
+                    transaction.Dispose();
+                }
+            }
+
+            return rowsAffected;
         }
     }
 }

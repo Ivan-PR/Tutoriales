@@ -20,7 +20,7 @@ namespace OpenWebinarsData
                 connection.Open();
                 OdbcCommand command = connection.CreateCommand();
                 command.CommandText = "SELECT Param1, Param2, Param3 FROM Table1 WHERE Param1 = @Param1Where";
-                command.Parameters.Add(new OdbcParameter("@Param1", 10));
+                command.Parameters.Add(new OdbcParameter("@Param1Where", 10));
                 OdbcDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())

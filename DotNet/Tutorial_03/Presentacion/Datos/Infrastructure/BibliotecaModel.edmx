@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categorias">
           <Key>
             <PropertyRef Name="idCategoria" />
@@ -30,6 +30,7 @@
           <Property Name="idLibro" Type="int" Nullable="false" />
           <Property Name="idUbicacion" Type="int" Nullable="false" />
           <Property Name="Codigo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Estado" Type="bit" />
         </EntityType>
         <EntityType Name="Ubicaciones">
           <Key>
@@ -120,8 +121,7 @@
             <End Role="Ventas" EntitySet="Ventas" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -156,6 +156,7 @@
           <NavigationProperty Name="Libro" Relationship="Self.FK_LibrosUnidades_Libros" FromRole="LibrosUnidades" ToRole="Libros" />
           <NavigationProperty Name="Ubicacione" Relationship="Self.FK_LibrosUnidades_Ubicaciones" FromRole="LibrosUnidades" ToRole="Ubicaciones" />
           <NavigationProperty Name="Ventas" Relationship="Self.FK_Ventas_LibrosUnidades" FromRole="LibrosUnidades" ToRole="Ventas" />
+          <Property Name="Estado" Type="Boolean" />
         </EntityType>
         <EntityType Name="Ubicacione">
           <Key>
@@ -281,6 +282,7 @@
           <EntitySetMapping Name="LibrosUnidades">
             <EntityTypeMapping TypeName="BibliotecaModel.LibrosUnidade">
               <MappingFragment StoreEntitySet="LibrosUnidades">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="idLibroUnidades" ColumnName="idLibroUnidades" />
                 <ScalarProperty Name="idLibro" ColumnName="idLibro" />
                 <ScalarProperty Name="idUbicacion" ColumnName="idUbicacion" />

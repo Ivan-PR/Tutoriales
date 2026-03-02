@@ -24,6 +24,7 @@ namespace Datos.Infrastructure
         public int idLibro { get; set; }
         public int idUbicacion { get; set; }
         public string Codigo { get; set; }
+        public Nullable<bool> Estado { get; set; }
     
         public virtual Libro Libro { get; set; }
         public virtual Ubicacione Ubicacione { get; set; }

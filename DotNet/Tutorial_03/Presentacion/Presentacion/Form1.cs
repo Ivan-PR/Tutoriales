@@ -31,5 +31,17 @@ namespace Presentacion
 
             lblResultado.Visible = true;
         }
+
+        private void btnAltaLibro_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnModificacionLibro_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btnEliminarLibro_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

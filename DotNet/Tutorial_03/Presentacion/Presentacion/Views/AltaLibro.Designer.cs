@@ -28,24 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnNombre = new System.Windows.Forms.TextBox();
+            this.txtNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
             this.lblAutor = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.lblEstado = new System.Windows.Forms.Label();
-            this.btnAutor = new System.Windows.Forms.TextBox();
+            this.txtAutor = new System.Windows.Forms.TextBox();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
-            // btnNombre
+            // txtNombre
             // 
-            this.btnNombre.Location = new System.Drawing.Point(85, 33);
-            this.btnNombre.Name = "btnNombre";
-            this.btnNombre.Size = new System.Drawing.Size(152, 20);
-            this.btnNombre.TabIndex = 0;
+            this.txtNombre.Location = new System.Drawing.Point(85, 33);
+            this.txtNombre.Name = "txtNombre";
+            this.txtNombre.Size = new System.Drawing.Size(152, 20);
+            this.txtNombre.TabIndex = 0;
             // 
             // lblNombre
             // 
@@ -83,12 +83,12 @@
             this.lblEstado.TabIndex = 4;
             this.lblEstado.Text = "Estado";
             // 
-            // btnAutor
+            // txtAutor
             // 
-            this.btnAutor.Location = new System.Drawing.Point(85, 71);
-            this.btnAutor.Name = "btnAutor";
-            this.btnAutor.Size = new System.Drawing.Size(152, 20);
-            this.btnAutor.TabIndex = 7;
+            this.txtAutor.Location = new System.Drawing.Point(85, 71);
+            this.txtAutor.Name = "txtAutor";
+            this.txtAutor.Size = new System.Drawing.Size(152, 20);
+            this.txtAutor.TabIndex = 7;
             // 
             // btnAceptar
             // 
@@ -135,14 +135,15 @@
             this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAceptar);
-            this.Controls.Add(this.btnAutor);
+            this.Controls.Add(this.txtAutor);
             this.Controls.Add(this.lblEstado);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblAutor);
             this.Controls.Add(this.lblNombre);
-            this.Controls.Add(this.btnNombre);
+            this.Controls.Add(this.txtNombre);
             this.Name = "AltaLibro";
             this.Text = "AltaLibro";
+            this.Load += new System.EventHandler(this.AltaLibro_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,12 +151,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox btnNombre;
+        private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.Label lblAutor;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.Label lblEstado;
-        private System.Windows.Forms.TextBox btnAutor;
+        private System.Windows.Forms.TextBox txtAutor;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.ComboBox cmbCategoria;

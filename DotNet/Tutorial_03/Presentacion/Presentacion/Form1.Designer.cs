@@ -34,6 +34,8 @@
             this.btnModificacionLibro = new System.Windows.Forms.Button();
             this.btnEliminarLibro = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnConsultaLibros = new System.Windows.Forms.Button();
+            this.btnConsultaConUnidades = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,11 +97,33 @@
             this.dataGridView1.Size = new System.Drawing.Size(796, 246);
             this.dataGridView1.TabIndex = 5;
             // 
+            // btnConsultaLibros
+            // 
+            this.btnConsultaLibros.Location = new System.Drawing.Point(639, 32);
+            this.btnConsultaLibros.Name = "btnConsultaLibros";
+            this.btnConsultaLibros.Size = new System.Drawing.Size(137, 43);
+            this.btnConsultaLibros.TabIndex = 6;
+            this.btnConsultaLibros.Text = "Consulta de Libros";
+            this.btnConsultaLibros.UseVisualStyleBackColor = true;
+            this.btnConsultaLibros.Click += new System.EventHandler(this.btnConsultaLibros_Click);
+            // 
+            // btnConsultaConUnidades
+            // 
+            this.btnConsultaConUnidades.Location = new System.Drawing.Point(639, 100);
+            this.btnConsultaConUnidades.Name = "btnConsultaConUnidades";
+            this.btnConsultaConUnidades.Size = new System.Drawing.Size(137, 43);
+            this.btnConsultaConUnidades.TabIndex = 7;
+            this.btnConsultaConUnidades.Text = "Consulta de Libros con unidades";
+            this.btnConsultaConUnidades.UseVisualStyleBackColor = true;
+            this.btnConsultaConUnidades.Click += new System.EventHandler(this.btnConsultaConUnidades_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnConsultaConUnidades);
+            this.Controls.Add(this.btnConsultaLibros);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnEliminarLibro);
             this.Controls.Add(this.btnModificacionLibro);
@@ -122,6 +146,8 @@
         private System.Windows.Forms.Button btnModificacionLibro;
         private System.Windows.Forms.Button btnEliminarLibro;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnConsultaLibros;
+        private System.Windows.Forms.Button btnConsultaConUnidades;
     }
 }
 

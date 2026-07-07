@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Tarea;
 use App\Repository\TareaRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -19,10 +22,24 @@ class TareaController extends AbstractController
     }
 
     #[Route('/tarea/crear', name: 'app_crear_tarea')]
-    public function crear(): Response
+    public function crear(Request $request): Response
     {
+        $tarea = new Tarea();
+        $descripcion = $request->request->get('descripcion', null);
+        if (null !== $descripcion) {
+            if (!empty($descripcion)) {
+                $em = $this->getDoctrine()->getManager();
+                $tarea->setDescripcion($descripcion);
+                $em->persist($tarea);
+                $em->flush();
+                $this->addFlash('success', 'Tarea creada correctamente!');
+                return $this->redirectToRoute('app_listado_tarea');
+            } else {
+                $this->addFlash('warning', 'El campo descripción es obligatorio');
+            }
+        }
         return $this->render('tarea/crear.html.twig', [
-            'controller_name' => 'TareaController',
+            'tarea' => $tarea,
         ]);
     }
 

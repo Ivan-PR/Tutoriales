@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Tarea;
 use App\Repository\TareaRepository;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,11 +66,31 @@ class TareaController extends AbstractController
         ]);
     }
 
-    #[Route('/tarea/eliminar/{id}', name: 'app_eliminar_tarea')]
+    #[Route('/tarea/eliminar/{id}', name: 'app_eliminar_tarea', requirements: ['id' => '\d+'])]
     public function eliminar(int $id): Response
     {
         return $this->render('tarea/listado.html.twig', [
             'controller_name' => 'TareaController',
+        ]);
+    }
+
+    #[Route('/tarea/editar-params/{id}', name: 'app_editar_tarea_con_params_convert', requirements: ['id' => '\d+'])]
+    public function editarConParamsConvert(Tarea $tarea, TareaRepository $tareaRepository, Request $request): Response
+    {
+        $descripcion = $request->request->get('descripcion', null);
+        if (null !== $descripcion) {
+            if (!empty($descripcion)) {
+                $em = $this->getDoctrine()->getManager();
+                $tarea->setDescripcion($descripcion);
+                $em->flush();
+                $this->addFlash('success', 'Tarea editada correctamente!');
+                return $this->redirectToRoute('app_listado_tarea');
+            } else {
+                $this->addFlash('warning', 'El campo descripción es obligatorio');
+            }
+        }
+        return $this->render('tarea/editar.html.twig', [
+            'tarea' => $tarea,
         ]);
     }
 }

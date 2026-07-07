@@ -44,10 +44,26 @@ class TareaController extends AbstractController
     }
 
     #[Route('/tarea/editar/{id}', name: 'app_editar_tarea')]
-    public function editar(int $id): Response
+    public function editar(int $id, TareaRepository $tareaRepository, Request $request): Response
     {
+        $tarea = $tareaRepository->findOneById($id);
+        if (null === $tarea) {
+            throw $this->createNotFoundException();
+        }
+        $descripcion = $request->request->get('descripcion', null);
+        if (null !== $descripcion) {
+            if (!empty($descripcion)) {
+                $em = $this->getDoctrine()->getManager();
+                $tarea->setDescripcion($descripcion);
+                $em->flush();
+                $this->addFlash('success', 'Tarea editada correctamente!');
+                return $this->redirectToRoute('app_listado_tarea');
+            } else {
+                $this->addFlash('warning', 'El campo descripción es obligatorio');
+            }
+        }
         return $this->render('tarea/editar.html.twig', [
-            'controller_name' => 'TareaController',
+            'tarea' => $tarea,
         ]);
     }
 

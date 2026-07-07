@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Crear tarea!
+{% block title %}Crear tarea
 {% endblock %}
 
 {% block body %}
 	<h1>Crear tarea</h1>
+
 	{% include 'comunes/_mensajes.html.twig' %}
 
-	{% include 'tarea/_formulario.html.twig' with {'accion': path('app_crear_tarea_servicio')} %}
+	{% include 'tarea/_formulario.html.twig' with {
+        accion: path('app_crear_tarea_servicio')
+    } %}
 {% endblock %}

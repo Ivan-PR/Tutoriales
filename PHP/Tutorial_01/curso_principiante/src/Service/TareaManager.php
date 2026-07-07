@@ -3,24 +3,24 @@
 namespace App\Service;
 
 use App\Entity\Tarea;
-use App\Repository\TareaRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class TareaManager
 {
-    private $em;
-    private $tareaRepository;
-    private $validator;
+    private EntityManagerInterface $em;
+    private ValidatorInterface $validator;
 
-    public function __construct(TareaRepository $tareaRepository, EntityManagerInterface $em, ValidatorInterface $validator)
-    {
+    public function __construct(
+        EntityManagerInterface $em,
+        ValidatorInterface $validator
+    ) {
         $this->em = $em;
-        $this->tareaRepository = $tareaRepository;
         $this->validator = $validator;
     }
 
-    public function crear(Tarea $tarea)
+    public function crear(Tarea $tarea): void
     {
         $this->em->persist($tarea);
         $this->em->flush();
@@ -37,9 +37,8 @@ class TareaManager
         $this->em->flush();
     }
 
-    public function validar(Tarea $tarea)
+    public function validar(Tarea $tarea): ConstraintViolationListInterface
     {
-        $errores = $this->validator->validate($tarea);
-        return $errores;
+        return $this->validator->validate($tarea);
     }
 }

@@ -30,7 +30,7 @@ class TareaController extends AbstractController
             $tarea->setDescripcion($descripcion);
             $errores = $tareaManager->validar($tarea);
 
-            if (empty($errores)) {
+            if (0 === count($errores)) {
                 $tareaManager->crear($tarea);
                 $this->addFlash('success', 'Tarea creada correctamente!');
                 return $this->redirectToRoute('app_listado_tarea');
@@ -45,23 +45,20 @@ class TareaController extends AbstractController
         ]);
     }
 
-    #[Route('/tarea/editar/{id}', name: 'app_editar_tarea')]
-    public function editar(int $id, TareaRepository $tareaRepository, Request $request): Response
+    #[Route('/tarea/editar-servicio/{id}', name: 'app_editar_tarea_servicio', requirements: ['id' => '\d+'])]
+    public function editar(Tarea $tarea, TareaManager $tareaManager, Request $request): Response
     {
-        $tarea = $tareaRepository->findOneById($id);
-        if (null === $tarea) {
-            throw $this->createNotFoundException();
-        }
         $descripcion = $request->request->get('descripcion', null);
         if (null !== $descripcion) {
-            if (!empty($descripcion)) {
-                $em = $this->getDoctrine()->getManager();
-                $tarea->setDescripcion($descripcion);
-                $em->flush();
+            $tarea->setDescripcion($descripcion);
+            $errores = $tareaManager->validar($tarea);
+            if (0 === count($errores)) {
+                $tareaManager->editar($tarea);
                 $this->addFlash('success', 'Tarea editada correctamente!');
                 return $this->redirectToRoute('app_listado_tarea');
-            } else {
-                $this->addFlash('warning', 'El campo descripción es obligatorio');
+            }
+            foreach ($errores as $error) {
+                $this->addFlash('warning', $error->getMessage());
             }
         }
         return $this->render('tarea/editar.html.twig', [
@@ -69,30 +66,34 @@ class TareaController extends AbstractController
         ]);
     }
 
-    #[Route('/tarea/eliminar/{id}', name: 'app_eliminar_tarea', requirements: ['id' => '\d+'])]
-    public function eliminar(Tarea $tarea): Response
+    #[Route('/tarea/eliminar-servicio/{id}', name: 'app_eliminar_tarea_servicio', requirements: ['id' => '\d+'])]
+    public function eliminar(Tarea $tarea, TareaManager $tareaManager): Response
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($tarea);
-        $em->flush();
+        $tareaManager->eliminar($tarea);
+
         $this->addFlash('success', 'Tarea eliminada correctamente!');
 
         return $this->redirectToRoute('app_listado_tarea');
     }
 
-    #[Route('/tarea/editar-params/{id}', name: 'app_editar_tarea_con_params_convert', requirements: ['id' => '\d+'])]
-    public function editarConParamsConvert(Tarea $tarea, TareaRepository $tareaRepository, Request $request): Response
-    {
+    #[Route('/tarea/editar-params-servicio/{id}', name: 'app_editar_tarea_con_params_convert_servicio', requirements: ['id' => '\d+'])]
+    public function editarConParamsConvert(
+        Tarea $tarea,
+        TareaManager $tareaManager,
+        Request $request
+    ): Response {
         $descripcion = $request->request->get('descripcion', null);
+
         if (null !== $descripcion) {
-            if (!empty($descripcion)) {
-                $em = $this->getDoctrine()->getManager();
-                $tarea->setDescripcion($descripcion);
-                $em->flush();
+            $tarea->setDescripcion($descripcion);
+            $errores = $tareaManager->validar($tarea);
+            if (0 === count($errores)) {
+                $tareaManager->editar($tarea);
                 $this->addFlash('success', 'Tarea editada correctamente!');
                 return $this->redirectToRoute('app_listado_tarea');
-            } else {
-                $this->addFlash('warning', 'El campo descripción es obligatorio');
+            }
+            foreach ($errores as $error) {
+                $this->addFlash('warning', $error->getMessage());
             }
         }
         return $this->render('tarea/editar.html.twig', [

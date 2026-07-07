@@ -36,7 +36,7 @@ class TareaController extends AbstractController
                 return $this->redirectToRoute('app_listado_tarea');
             } else {
                 foreach ($errores as $error) {
-                    $this->addFlash('warning', $error);
+                    $this->addFlash('warning', $error->getMessage());
                 }
             }
         }

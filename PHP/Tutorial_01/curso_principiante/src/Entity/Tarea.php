@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TareaRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: TareaRepository::class)]
 class Tarea
@@ -14,6 +15,7 @@ class Tarea
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'El campo descripción no puede estar vacío')]
     private ?string $descripcion = null;
 
     public function getId(): ?int

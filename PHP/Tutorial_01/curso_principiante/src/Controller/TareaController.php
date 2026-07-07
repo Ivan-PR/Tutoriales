@@ -67,11 +67,14 @@ class TareaController extends AbstractController
     }
 
     #[Route('/tarea/eliminar/{id}', name: 'app_eliminar_tarea', requirements: ['id' => '\d+'])]
-    public function eliminar(int $id): Response
+    public function eliminar(Tarea $tarea): Response
     {
-        return $this->render('tarea/listado.html.twig', [
-            'controller_name' => 'TareaController',
-        ]);
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($tarea);
+        $em->flush();
+        $this->addFlash('success', 'Tarea eliminada correctamente!');
+
+        return $this->redirectToRoute('app_listado_tarea');
     }
 
     #[Route('/tarea/editar-params/{id}', name: 'app_editar_tarea_con_params_convert', requirements: ['id' => '\d+'])]

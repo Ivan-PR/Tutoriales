@@ -15,4 +15,12 @@ class TareaController extends AbstractController
             'controller_name' => 'TareaController',
         ]);
     }
+
+    #[Route('/tarea/crear', name: 'app_crear_tarea')]
+    public function crear(): Response
+    {
+        return $this->render('tarea/index.html.twig', [
+            'controller_name' => 'TareaController',
+        ]);
+    }
 }

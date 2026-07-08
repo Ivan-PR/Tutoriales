@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Entity\Tarea;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -19,7 +21,24 @@ class TareaRepository extends ServiceEntityRepository
         parent::__construct($registry, Tarea::class);
     }
 
-    public function buscarTareaPorDescripcion(string $descripcion)
+    public function paginacion(Query $dql, int $pagina, int $elementosPorPagina): Paginator
+    {
+        $paginador = new Paginator($dql);
+        $paginador->getQuery()
+            ->setFirstResult($elementosPorPagina * ($pagina - 1))
+            ->setMaxResults($elementosPorPagina);
+        return $paginador;
+    }
+
+    public function buscarTodas(int $pagina = 1, int $elementosPorPagina = 5): Paginator
+    {
+        $query = $this->createQueryBuilder('t')
+            ->getQuery();
+
+        return $this->paginacion($query, $pagina, $elementosPorPagina);
+    }
+
+    public function buscarTareaPorDescripcion(string $descripcion): ?Tarea
     {
         return $this->createQueryBuilder('t')
             ->andWhere('t.descripcion = :valorDescripcion')

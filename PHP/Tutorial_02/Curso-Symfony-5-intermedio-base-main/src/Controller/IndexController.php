@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    private const ELEMENTOS_POR_PAGINA = 10;
+    public const ELEMENTOS_POR_PAGINA = 10;
 
     /**
      * @Route(
@@ -24,6 +24,7 @@ class IndexController extends AbstractController
     {
         return $this->render('index/index.html.twig', [
             'tareas' => $tareaRepository->buscarTodas($pagina, self::ELEMENTOS_POR_PAGINA),
+            'pagina' => $pagina,
         ]);
     }
 }

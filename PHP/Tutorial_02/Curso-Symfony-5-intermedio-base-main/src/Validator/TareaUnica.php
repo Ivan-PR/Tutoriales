@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validator;
 
 use Symfony\Component\Validator\Constraint;
@@ -7,21 +9,19 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-class TareaUnica extends Constraint
+final class TareaUnica extends Constraint
 {
-    /*
-     * Any public properties become valid options for the annotation.
-     * Then, use these in your validator class.
-     */
-    public $message = 'Tarea con descripción "{{ value }}" existente.';
+    public string $message = 'Ya existe una tarea con la descripción "{{ value }}".';
 
     /**
-     * Con eso indicamos que la validacion se hace a nivel de entidad en lughar de propiedad
-     * 
-     * 
-     * en la clse poner:  * @AppAssert\TareaUnica
+     * Indica que la validación se realiza a nivel de entidad
+     * y no sobre una propiedad concreta.
+     *
+     * Debe aplicarse sobre la entidad:
+     *
+     * @AppAssert\TareaUnica
      */
-    public function getTargets()
+    public function getTargets(): string
     {
         return self::CLASS_CONSTRAINT;
     }

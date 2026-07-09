@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Entity\Tarea;
@@ -13,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/tarea")
  */
-class TareaController extends AbstractController
+final class TareaController extends AbstractController
 {
     /**
      * @Route("/", name="tarea_index", methods={"GET"})
@@ -31,15 +33,17 @@ class TareaController extends AbstractController
     public function new(Request $request): Response
     {
         $tarea = new Tarea();
+
         $form = $this->createForm(TareaType::class, $tarea);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->persist($tarea);
             $entityManager->flush();
 
-            return $this->redirectToRoute('tarea_index');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('tarea/new.html.twig', [
@@ -69,7 +73,7 @@ class TareaController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('tarea_index');
+            return $this->redirectToRoute('app_index');
         }
 
         return $this->render('tarea/edit.html.twig', [
@@ -83,12 +87,35 @@ class TareaController extends AbstractController
      */
     public function delete(Request $request, Tarea $tarea): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$tarea->getId(), $request->request->get('_token'))) {
+        $token = (string) $request->request->get('_token');
+
+        if ($this->isCsrfTokenValid('delete' . $tarea->getId(), $token)) {
             $entityManager = $this->getDoctrine()->getManager();
+
             $entityManager->remove($tarea);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('tarea_index');
+        return $this->redirectToRoute('app_index');
+    }
+
+    /**
+     * @Route("/{id}", name="tarea_finalizar", methods={"POST"})
+     */
+    public function finalizar(Tarea $tarea, Request $request): Response
+    {
+        if (!$request->isXmlHttpRequest()) {
+            throw $this->createNotFoundException();
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $tarea->setFinalizada(!$tarea->getFinalizada());
+
+        $entityManager->flush();
+
+        return $this->json([
+            'finalizada' => $tarea->getFinalizada(),
+        ]);
     }
 }

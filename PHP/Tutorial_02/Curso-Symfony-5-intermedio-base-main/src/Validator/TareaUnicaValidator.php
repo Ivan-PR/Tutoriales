@@ -1,31 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Validator;
 
+use App\Entity\Tarea;
 use App\Repository\TareaRepository;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
-class TareaUnicaValidator extends ConstraintValidator
+final class TareaUnicaValidator extends ConstraintValidator
 {
+    public function __construct(
+        private readonly TareaRepository $tareaRepository,
+    ) {}
 
-    private $tareaRepository;
-
-    public function __construct(TareaRepository $tareaRepository)
+    /**
+     * @param Tarea|null $value
+     */
+    public function validate($value, Constraint $constraint): void
     {
-        $this->tareaRepository = $tareaRepository;
-    }
-
-    public function validate($tarea, Constraint $constraint)
-    {
-        $descripcion = $tarea->getDescripcion();
-        if (null === $descripcion || '' === $descripcion) {
+        if (!$value instanceof Tarea) {
             return;
         }
 
-        $tareaCondescripcionIgual = $this->tareaRepository->buscarTareaPorDescripcion($descripcion);
-        if (null !== $tareaCondescripcionIgual && $tarea->getId() !== $tareaCondescripcionIgual->getId()) {
-            $this->context->buildViolation($constraint->message)
+        $descripcion = $value->getDescripcion();
+
+        if ($descripcion === null || $descripcion === '') {
+            return;
+        }
+
+        $tareaExistente = $this->tareaRepository
+            ->buscarTareaPorDescripcion($descripcion);
+
+        if (
+            $tareaExistente !== null
+            && $value->getId() !== $tareaExistente->getId()
+        ) {
+            $this->context
+                ->buildViolation($constraint->message)
                 ->setParameter('{{ value }}', $descripcion)
                 ->addViolation();
         }

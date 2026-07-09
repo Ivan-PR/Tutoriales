@@ -1,26 +1,35 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tarea{% endblock %}
+{% block title %}Tarea
+{% endblock %}
 
 {% block body %}
-    <h1>Tarea</h1>
+	<h1>Tarea</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ tarea.id }}</td>
-            </tr>
-            <tr>
-                <th>Descripcion</th>
-                <td>{{ tarea.descripcion }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ tarea.id }}</td>
+			</tr>
+			<tr>
+				<th>Descripción</th>
+				<td>{{ tarea.descripcion }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <a href="{{ path('tarea_index') }}">back to list</a>
+	<div class="mt-3">
+		<a href="{{ path('app_index') }}" class="btn btn-secondary">
+			Volver al listado
+		</a>
 
-    <a href="{{ path('tarea_edit', {'id': tarea.id}) }}">edit</a>
+		<a href="{{ path('tarea_edit', { id: tarea.id }) }}" class="btn btn-primary">
+			Editar
+		</a>
+	</div>
 
-    {{ include('tarea/_delete_form.html.twig') }}
+	<div class="mt-3">
+		{{ include('tarea/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

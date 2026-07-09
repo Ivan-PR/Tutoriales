@@ -1,5 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Página no encontrada
+{% endblock %}
+
 {% block body %}
-    <h1>Página no encontrada</h1>
+	<div class="container mt-4">
+		<h1>Página no encontrada</h1>
+
+		<p>
+			La página que está buscando no existe o ya no está disponible.
+		</p>
+
+		<a href="{{ path('app_index') }}" class="btn btn-primary">
+			Volver al listado de tareas
+		</a>
+	</div>
 {% endblock %}

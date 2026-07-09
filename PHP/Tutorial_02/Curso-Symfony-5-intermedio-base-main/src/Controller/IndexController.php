@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
 use App\Repository\TareaRepository;
@@ -7,7 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class IndexController extends AbstractController
+final class IndexController extends AbstractController
 {
     public const ELEMENTOS_POR_PAGINA = 10;
 
@@ -23,7 +25,10 @@ class IndexController extends AbstractController
     public function index(int $pagina, TareaRepository $tareaRepository): Response
     {
         return $this->render('index/index.html.twig', [
-            'tareas' => $tareaRepository->buscarTodas($pagina, self::ELEMENTOS_POR_PAGINA),
+            'tareas' => $tareaRepository->buscarTodas(
+                $pagina,
+                self::ELEMENTOS_POR_PAGINA
+            ),
             'pagina' => $pagina,
         ]);
     }

@@ -11,9 +11,15 @@ use Symfony\Component\Validator\ConstraintValidator;
 
 final class TareaUnicaValidator extends ConstraintValidator
 {
-    public function __construct(
-        private readonly TareaRepository $tareaRepository,
-    ) {}
+    /**
+     * @var TareaRepository
+     */
+    private $tareaRepository;
+
+    public function __construct(TareaRepository $tareaRepository)
+    {
+        $this->tareaRepository = $tareaRepository;
+    }
 
     /**
      * @param Tarea|null $value

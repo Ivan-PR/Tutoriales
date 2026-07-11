@@ -9,12 +9,25 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-final class TareaManager
+class TareaManager
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    /**
+     * @var ValidatorInterface
+     */
+    private $validator;
+
     public function __construct(
-        private readonly EntityManagerInterface $entityManager,
-        private readonly ValidatorInterface $validator,
-    ) {}
+        EntityManagerInterface $entityManager,
+        ValidatorInterface $validator
+    ) {
+        $this->entityManager = $entityManager;
+        $this->validator = $validator;
+    }
 
     public function crear(Tarea $tarea): void
     {
